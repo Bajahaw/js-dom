@@ -1,4 +1,4 @@
-// Start here
+// THE FINAL SOLUTION IS NOT YET IMPLEMENTED, WAIT FOR THE NEXT COMMITS
 const menu = document.getElementsByClassName('nav')[0];
 const menuToggle = document.getElementsByClassName('menu-toggle')[0];
 const button = document.getElementsByClassName('btn-submit')[0];
