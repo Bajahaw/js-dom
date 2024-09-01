@@ -67,17 +67,28 @@ submit.addEventListener('click', (event) => {
   `;
 });
 
-close.addEventListener('click', () => {
+function hide() {
   modal.style.visibility = 'hidden';
   modal.style.opacity = '0';
   modal.getElementsByClassName('modal-content')[0].style.opacity = '0';
-});
+}
 
+close.addEventListener('click', hide);
 confirm.addEventListener('click', () => {
-  form.submit();
+  form.reset();
+  hide();
 
   //----------------------------------
   // Task 4
 
   toast.style.opacity = '1';
+  // eslint-disable-next-line no-return-assign
+  setTimeout(() => (toast.style.opacity = '0'), 3000);
 });
+
+const toastcls = toast.getElementsByClassName('btn-close-sm')[0];
+
+// eslint-disable-next-line no-return-assign
+toastcls.addEventListener('click', () => (toast.style.opacity = '0'));
+
+//----------------------------------------------------
