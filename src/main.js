@@ -1,7 +1,6 @@
-// THE FINAL SOLUTION IS NOT YET IMPLEMENTED, WAIT FOR THE NEXT COMMITS
+// Task 1
 const menu = document.getElementsByClassName('nav')[0];
 const menuToggle = document.getElementsByClassName('menu-toggle')[0];
-const button = document.getElementsByClassName('btn-submit')[0];
 
 function showMenu() {
   if (menu.style.top !== '0px') {
@@ -9,32 +8,37 @@ function showMenu() {
   } else menu.style.top = '-100%';
 }
 
-console.log('hello world');
+menuToggle.addEventListener('click', showMenu);
 
-function checkfields() {
-  const fields = [
-    document.getElementById('name'),
-    document.getElementById('surname'),
-    document.getElementById('email'),
-    document.getElementById('dropdown'),
-    document.getElementById('date'),
-    document.getElementById('phone'),
-    document.getElementByClassName('form-checkbox-checkmark')[0]
-  ];
-  let condition = false;
-  // eslint-disable-next-line no-plusplus
-  for (let i = 0; i < 8; i++) {
-    console.log(fields[i]);
-    if (fields[i].value === '') {
-      condition = true;
-      break;
+//-------------------------------------------------------
+// Task 2
+
+const button = document.getElementsByClassName('btn-submit')[0];
+const form = document.getElementsByClassName('form')[0];
+
+function checkFields() {
+  const fields = Array.from(document.getElementsByClassName('form-control'));
+  fields.pop();
+  fields.push(document.getElementsByClassName('form-checkbox-control')[0]);
+
+  // eslint-disable-next-line no-restricted-syntax
+  for (const field of fields) {
+    if (field && field.value === '') {
+      button.disabled = true;
+      return;
+    }
+    if (field && field.type === 'checkbox') {
+      if (!field.checked) {
+        button.disabled = true;
+        return;
+      }
     }
   }
-  if (condition) {
-    button.disabled = false;
-  }
+  button.disabled = false;
 }
 
-button.addEventListener('keyup', () => checkfields());
+form.addEventListener('change', checkFields);
 button.disabled = true;
-menuToggle.addEventListener('click', showMenu);
+
+//---------------------------------------------------
+// Task 3
